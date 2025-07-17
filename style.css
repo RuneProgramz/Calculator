@@ -1,0 +1,36 @@
+.container{
+    display:flex;
+    height: 600px;
+    width: 350px;
+    border:solid black 5px;
+    flex-direction:column;
+
+}
+.displayContainer{
+    display:flex;
+    width:350px;
+    height:150px;
+}
+
+.buttonContainer{
+    display:flex;
+    width:350px;
+    height:350px;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+
+button.calculatorButtons{
+    font-size: 30px;
+}
+
+.displayContainer{
+    font-size: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.decimal{
+    height : 17%;
+    font-size: 50px;
+}
