@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class = "container">
+      <div class = "displayContainer"></div>
+      <div class = "buttonContainer"></div>
+         <button class = "decimal">.</button>
+    </div>
+      
+    <script>
+
+        let firstNumber ="";
+        let secondNumber= "";
+        let operator = "";
+        let resettingDisplay = false;
+
+        
+        function add(a,b){
+            return a+b;
+        }
+
+        function subtract(a,b){
+            return a-b;
+        }
+
+        function multiply(a,b){
+            return a*b;
+        }
+
+        function divide(a,b){
+            return a/b;
+        }
+
+        function operate(a,operator,b){
+            a = Number(a);
+            b = Number(b);
+            switch(operator){
+                case "+":
+                    return add(a,b);
+                case "-":
+                    return subtract(a,b);
+                case "*":
+                    return multiply(a,b);
+                case "/":
+                    return divide(a,b);
+                default:
+                    return "Invalid Operation";
+            }
+           
+            
+
+        }
+
+         const toDisplay = document.querySelector(".displayContainer");
+        function displayValue(value){
+            if(value === "C"){
+                toDisplay.textContent = "";
+                firstNumber = " ";
+                operator = " ";
+                secondNumber = " ";
+                displayingDecimal.disabled =false;
+                
+            }
+            else if(value === "+" || value ==="-" || value === "*" || value === "/"){
+                firstNumber = toDisplay.textContent;
+                displayingDecimal.disabled =false;
+                toDisplay.textContent = "";
+                operator = value;
+                
+            }
+            else if(value === "=" ){
+                secondNumber = toDisplay.textContent;
+                let result = operate(firstNumber,operator,secondNumber);
+                toDisplay.textContent = result;
+                //reset for next calculation
+                firstNumber = toDisplay.textContent;
+                operator = " ";
+                secondNumber = " ";
+            }
+            else{
+                if(resettingDisplay){
+                    toDisplay.textContent = "";
+                    resettingDisplay = false;
+                }
+                toDisplay.textContent+=value;
+            }
+
+            return value;
+    
+        }
+
+        
+
+
+        let labels = ["1","2","3","+","4","5","6","-","7","8","9","*","C","0","=","/" ,"."];
+        let buttonAmount = 4;
+        const insideContainer = document.querySelector(".buttonContainer");
+        const containerSize = 350;
+        let calculateSize = containerSize / buttonAmount;
+        for(let i=0;i<buttonAmount * buttonAmount;i++){
+            const makingButton = document.createElement("button");
+            makingButton.classList.add("calculatorButtons");
+            
+
+            makingButton.style.width = `${calculateSize}px`;
+            makingButton.style.height= `${calculateSize}px`;
+            makingButton.textContent = labels[i];
+            makingButton.addEventListener("click", function(){
+             displayValue(makingButton.textContent);   
+
+            //    if(makingButton.textContent === "1"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "2"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "3"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "4"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "5"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "6"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "7"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "8"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "9"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "0"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "+"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "-"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "*"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "/"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            //    else if(makingButton.textContent === "C"){
+            //     displayValue(makingButton.textContent);
+            //    }
+            });
+            insideContainer.appendChild(makingButton);
+
+           
+
+        }
+
+        const displayingDecimal = document.querySelector(".decimal")
+            displayingDecimal.addEventListener("click",function(){
+                displayValue(displayingDecimal.textContent);
+                displayingDecimal.disabled =true;
+            
+            })
+
+
+        
+        
+        
+     
+       
+      
+
+
+            
+        
+
+
+
+
+
+
+
+
+
+        console.log(add(3,4));
+
+
+    </script>
+    
+</body>
+</html>
